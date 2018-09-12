@@ -1,12 +1,15 @@
+#ifndef CLI_H
+#define CLI_H
 
 class CLI {
 	public:
 		CLI();
-		//~CLI();
+		~CLI();
 		void registerAction(CLIAction);
+		bool actionExists(CLIAction);
 		std::vector<CLIAction> getActions();
 		int getActionsCount();
-		int execute(std::string actionName);
+		int execute(char *command[]);
 		void help();
 
 		// CLI actions - write here your custom actions methods
@@ -18,3 +21,5 @@ class CLI {
 		CLIAction getCLIAction(std::string);
 
 };
+
+#endif

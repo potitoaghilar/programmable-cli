@@ -1,3 +1,5 @@
+#ifndef CONSOLE_H
+#define CONSOLE_H
 
 class Console {
 	public:
@@ -9,3 +11,5 @@ class Console {
         static int getMaxLengthFromActionsNames(std::vector<CLIAction>);
 
 };
+
+#endif

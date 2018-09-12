@@ -24,7 +24,7 @@ void Console::printAction(string name, string description, int maxLength) {
 void Console::printHelp(vector<CLIAction> actions) {
 	int maxLengthFromActionsNames = getMaxLengthFromActionsNames(actions);
 	for(int i = 0; i < actions.size(); i++) {
-		printAction(actions[i].getName(), actions[i].getDescription(), maxLengthFromActionsNames);
+		printAction(actions[i].namesToString(), actions[i].getDescription(), maxLengthFromActionsNames);
 	}
 	Console::print("\n");
 }
@@ -32,7 +32,7 @@ void Console::printHelp(vector<CLIAction> actions) {
 int Console::getMaxLengthFromActionsNames(vector<CLIAction> actions) {
 	vector<int> sizes;
 	for(int i = 0; i < actions.size(); i++) {
-		sizes.push_back(actions[i].getName().length());
+		sizes.push_back(actions[i].namesToString().length());
 	}
 	return *max_element(sizes.begin(), sizes.end());
 }
