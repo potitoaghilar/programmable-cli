@@ -1,5 +1,8 @@
 language: cpp
+branches:
+  except:
+  - gh-pages
 script:
-- cmake --version
-- cmake .
-- make
+  - cmake --version
+  - cmake .
+  - make
