@@ -1,7 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <map>
-#include "cli-action.h"
+#include "cli-action-simple.h"
+#include "cli-action-list.h"
+#include "cli-action-param.h"
 #include "cli.h"
 #include "console.h"
 
@@ -22,9 +24,9 @@ int main(int argc, char* argv[]) {
 	// To view help use ./CLI --help
 	// To enter interactive mode use ./CLI -i
 
-	cli.registerAction(CLIAction("action", "Custom simple action description.")); // Simple action
-	cli.registerAction(CLIAction("-a", "/some/path", "This action is called when a parameter -a is passed with content.")); // Simple action with a parameter
-	cli.registerAction(CLIAction(vector<string> {"action1", "action2"}, "Action1 and action2 have the same effect.")); //These actions are in OR
+	cli.registerAction(CLIActionSimple("action", "Custom simple action description.")); // Simple action
+	cli.registerAction(CLIActionParam("-a", "/some/path", "This action is called when a parameter -a is passed with content.")); // Simple action with a parameter
+	cli.registerAction(CLIActionList({"action1", "action2"}, "Action1 and action2 have the same effect.")); //These actions are in OR
 
 	if(argc == 1) {
 

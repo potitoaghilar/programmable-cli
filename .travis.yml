@@ -1,5 +1,4 @@
 language: cpp
-install: true
 script:
 - cmake --version
 - cmake .

@@ -1,8 +1,11 @@
 #include <iostream>
 #include <vector>
+#include <cstdlib>
 #include <stdio.h>
 #include <string.h>
-#include "cli-action.h"
+#include "cli-action-simple.h"
+#include "cli-action-list.h"
+#include "cli-action-param.h"
 #include "cli.h"
 #include "console.h"
 #include "process-manager.h"
@@ -11,9 +14,9 @@ using namespace std;
 
 CLI::CLI() {
 	// Help panel is a must have for every CLI
-	this->registerAction(CLIAction(vector<string> {"-h", "--help"}, "Show this help panel."));
+	this->registerAction(CLIActionList({"-h", "--help"}, "Show this help panel."));
 	// Interactive mode allow you to insert commands after entering the CLI
-	this->registerAction(CLIAction("-i", "Enter interactive mode."));
+	this->registerAction(CLIActionSimple("-i", "Enter interactive mode."));
 }
 
 CLI::~CLI() {}
@@ -54,7 +57,7 @@ int CLI::getActionsCount() {
 int CLI::execute(char *command[]) {
 
 	// Check if actionName exists
-	if(actionExists(CLIAction("",""))) { // TODO
+	if(actionExists(CLIActionSimple("",""))) { // TODO
 
 		//CLIAction cli_action = CLI::getCLIAction(actionName);
 
