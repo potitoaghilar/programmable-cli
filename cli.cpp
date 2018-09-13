@@ -10,6 +10,7 @@
 #include "cli.h"
 #include "console.h"
 #include "process-manager.h"
+#include "cli-parser.h"
 
 using namespace std;
 
@@ -59,23 +60,30 @@ int CLI::getActionsCount() {
 	return this->getActions().size();
 }
 
-int CLI::execute(char *command[]) {
+int CLI::execute(std::vector<std::string> commands) {
 
-	// TODO - execute multiple actions if more parameters are passed
+	// Parse commands to actions
+	vector<CLIAction> actions = CLIParser::getActionsFromArgs(this->getActions(), commands);
 
-	// Check if action name exists
-	if(actionExists(command[1])) {
+	for(int i = 0; i < actions.size(); i++) {
 
-	    CLIAction action = getCLIAction(command[1]);
+		// Check if action name exists
+		if(actionExists(actions[i])) {
 
-		return true;
+			Console::print("Action is called");
+			// TODO - call lambda function for this action
 
-	} else {
+		} else {
 
-		Console::printError(strcat(command[1], ": action not found!\n\n"));
-		return false;
+			Console::printError(actions[i].getCalledAction() + ": action not found!\n\n");
+			return false;
+
+		}
 
 	}
+
+	return true;
+
 }
 
 CLIAction CLI::getCLIAction(int i) {
