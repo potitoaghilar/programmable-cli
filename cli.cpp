@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <stdio.h>
 #include <string.h>
+#include <stdexcept>
 #include "cli-action-simple.h"
 #include "cli-action-list.h"
 #include "cli-action-param.h"
@@ -40,10 +41,14 @@ bool CLI::actionExists(CLIAction action) {
 			CLI::getCLIAction(action.getName(i));
 		}
 
-	} catch (std::exception &e) {
+	} catch (std::exception e) {
 		return false;
 	}
 	return true;
+}
+
+bool CLI::actionExists(string actionName) {
+	return actionExists(CLIActionSimple(actionName));
 }
 
 std::vector<CLIAction> CLI::getActions() {
@@ -56,12 +61,12 @@ int CLI::getActionsCount() {
 
 int CLI::execute(char *command[]) {
 
-	// Check if actionName exists
-	if(actionExists(CLIActionSimple("",""))) { // TODO
+	// TODO - execute multiple actions if more parameters are passed
 
-		//CLIAction cli_action = CLI::getCLIAction(actionName);
+	// Check if action name exists
+	if(actionExists(command[1])) {
 
-		// TODO execute action
+	    CLIAction action = getCLIAction(command[1]);
 
 		return true;
 
@@ -85,7 +90,7 @@ CLIAction CLI::getCLIAction(string actionName) {
 			}
 		}
 	}
-	throw;
+	throw std::runtime_error("Action not found!");
 }
 
 // CLI actions methods

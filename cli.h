@@ -7,6 +7,7 @@ class CLI {
 		~CLI();
 		void registerAction(CLIAction);
 		bool actionExists(CLIAction);
+		bool actionExists(std::string);
 		std::vector<CLIAction> getActions();
 		int getActionsCount();
 		int execute(char *command[]);
