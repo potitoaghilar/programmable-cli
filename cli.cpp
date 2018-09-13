@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdexcept>
+#include <typeinfo>
 #include "cli-action-simple.h"
 #include "cli-action-list.h"
 #include "cli-action-param.h"
@@ -67,18 +68,23 @@ int CLI::execute(std::vector<std::string> commands) {
 
 	for(int i = 0; i < actions.size(); i++) {
 
-		// Check if action name exists
-		if(actionExists(actions[i])) {
+	    // What is the number appeared on first char?
+		if(((string)typeid(actions[i]).name()).find("CLINoAction") != std::string::npos) {
 
-			Console::print("Action is called");
+			Console::print(actions[i].getCalledAction() + " action is called\n");
 			// TODO - call lambda function for this action
 
 		} else {
 
+		    // Exit if one action in the chain is not found
 			Console::printError(actions[i].getCalledAction() + ": action not found!\n\n");
 			return false;
 
 		}
+
+		// Check if action name exists
+		/*if(actionExists(actions[i])) { // TODO <-- implement this check inside CLIParser
+		} else {}*/
 
 	}
 
@@ -108,6 +114,7 @@ void CLI::help() {
 }
 
 void CLI::customAction() {
+    // TODO - implement windows and unix differences
 	#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
 		ProcessManager::startProcess("<custom windows cmd script>");
 	#else

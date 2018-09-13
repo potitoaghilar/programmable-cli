@@ -12,6 +12,8 @@ CLIAction::CLIAction(vector<string> names, string description) {
 	this->description = description;
 }
 
+CLIAction::CLIAction() {}
+
 CLIAction::~CLIAction() {}
 
 vector<string> CLIAction::getNames() {

@@ -15,6 +15,7 @@ class CLIAction {
 
     protected:
         CLIAction(std::vector<std::string>, std::string);
+        CLIAction(); // This constructor is for CLINoAction type
 		std::vector<std::string> names;
 		std::string description;
 		std::string calledAction;
