@@ -85,7 +85,7 @@ CLIAction CLI::getCLIAction(string actionName) {
 			}
 		}
 	}
-	throw std::runtime_error("");
+	throw;
 }
 
 // CLI actions methods
