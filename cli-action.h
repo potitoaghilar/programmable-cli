@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <functional>
 
 class CLIAction {
 	public:
@@ -12,13 +13,16 @@ class CLIAction {
 		std::string namesToString();
 		std::string getDescription();
 		std::string getCalledAction();
+        void execute();
 
     protected:
-        CLIAction(std::vector<std::string>, std::string);
+        CLIAction(std::vector<std::string>, std::string, std::function<void ()>);
         CLIAction(); // This constructor is for CLINoAction type
 		std::vector<std::string> names;
 		std::string description;
 		std::string calledAction;
+        std::function<void ()> function;
+
 };
 
 #endif

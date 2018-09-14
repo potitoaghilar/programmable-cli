@@ -64,20 +64,20 @@ int CLI::getActionsCount() {
 int CLI::execute(std::vector<std::string> commands) {
 
 	// Parse commands to actions
-	vector<CLIAction> actions = CLIParser::getActionsFromArgs(this->getActions(), commands);
+	vector<CLIAction> wantedActions = CLIParser::getActionsFromArgs(this->getActions(), commands);
 
-	for(int i = 0; i < actions.size(); i++) {
+	for(int i = 0; i < wantedActions.size(); i++) {
 
 	    // What is the number appeared on first char?
-		if(((string)typeid(actions[i]).name()).find("CLINoAction") != std::string::npos) {
+		if(((string)typeid(wantedActions[i]).name()).find("CLINoAction") != std::string::npos) {
 
-			Console::print(actions[i].getCalledAction() + " action is called\n");
+			Console::print(wantedActions[i].getCalledAction() + " action is called\n");
 			// TODO - call lambda function for this action
 
 		} else {
 
 		    // Exit if one action in the chain is not found
-			Console::printError(actions[i].getCalledAction() + ": action not found!\n\n");
+			Console::printError(wantedActions[i].getCalledAction() + ": action not found!\n\n");
 			return false;
 
 		}

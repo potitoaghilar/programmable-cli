@@ -5,7 +5,7 @@
 
 class CLIActionList : public CLIAction {
 	public:
-		CLIActionList(std::vector<std::string>, std::string = "");
+		CLIActionList(std::vector<std::string>, std::string = "", std::function<void ()> = []() {});
 		~CLIActionList();
 };
 

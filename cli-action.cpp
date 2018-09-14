@@ -1,15 +1,17 @@
 #include <iostream>
 #include <vector>
+#include <functional>
 #include "cli-action.h"
 #include "cli-action-param.h"
 
 using namespace std;
 
-CLIAction::CLIAction(vector<string> names, string description) {
+CLIAction::CLIAction(vector<string> names, string description, std::function<void ()> function) {
 	for(int i = 0; i < names.size(); i++) {
 		this->names.push_back(names[i]);
 	}
 	this->description = description;
+	this->function = function;
 }
 
 CLIAction::CLIAction() {}
@@ -38,4 +40,9 @@ string CLIAction::getDescription()  {
 
 string CLIAction::getCalledAction() {
     return calledAction;
+}
+
+void CLIAction::execute() {
+	// Execute lambda function for this action
+	function();
 }
