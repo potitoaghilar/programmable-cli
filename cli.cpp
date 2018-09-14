@@ -40,7 +40,7 @@ bool CLI::actionExists(CLIAction action) {
 	try {
 
 		for(int i = 0; i < action.getNames().size(); i++) {
-			CLI::getCLIAction(action.getName(i));
+			getCLIAction(action.getName(i));
 		}
 
 	} catch (std::exception e) {
@@ -64,15 +64,14 @@ int CLI::getActionsCount() {
 int CLI::execute(std::vector<std::string> commands) {
 
 	// Parse commands to actions
-	vector<CLIAction> wantedActions = CLIParser::getActionsFromArgs(this->getActions(), commands);
+	vector<CLIAction> wantedActions = CLIParser::getActionsFromArgs(this, commands);
 
 	for(int i = 0; i < wantedActions.size(); i++) {
 
-	    // What is the number appeared on first char?
-		if(((string)typeid(wantedActions[i]).name()).find("CLINoAction") != std::string::npos) {
+		if(!wantedActions[i].isNoAction) {
 
-			Console::print(wantedActions[i].getCalledAction() + " action is called\n");
-			// TODO - call lambda function for this action
+		    // Execute lambda function of the found action
+			wantedActions[i].execute();
 
 		} else {
 
@@ -81,10 +80,6 @@ int CLI::execute(std::vector<std::string> commands) {
 			return false;
 
 		}
-
-		// Check if action name exists
-		/*if(actionExists(actions[i])) { // TODO <-- implement this check inside CLIParser
-		} else {}*/
 
 	}
 

@@ -12,8 +12,10 @@ class CLIAction {
 		std::string getName(int i = 0);
 		std::string namesToString();
 		std::string getDescription();
-		std::string getCalledAction();
+        void setCalledAction(std::string);
+        std::string getCalledAction();
         void execute();
+        bool isNoAction;
 
     protected:
         CLIAction(std::vector<std::string>, std::string, std::function<void ()>);

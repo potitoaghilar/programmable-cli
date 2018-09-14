@@ -12,6 +12,7 @@ CLIAction::CLIAction(vector<string> names, string description, std::function<voi
 	}
 	this->description = description;
 	this->function = function;
+	this->isNoAction = false;
 }
 
 CLIAction::CLIAction() {}
@@ -36,6 +37,10 @@ string CLIAction::namesToString() {
 
 string CLIAction::getDescription()  {
 	return description;
+}
+
+void CLIAction::setCalledAction(string calledAction) {
+	this->calledAction = calledAction;
 }
 
 string CLIAction::getCalledAction() {
