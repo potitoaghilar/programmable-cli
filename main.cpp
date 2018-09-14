@@ -21,6 +21,12 @@ int main(int argc, char* argv[]) {
 	// Header to show
 	Console::print(appName + " - Command Line Interface (CLI)\n\n");
 
+	/*#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
+
+	#else
+
+	#endif*/
+
 	// Main CLI object
 	CLI cli;
 
@@ -30,21 +36,24 @@ int main(int argc, char* argv[]) {
 	// Chaining actions is also possible.
 
 	// Simple action
-	cli.registerAction(CLIActionSimple("action", "Custom simple action description.", []() {
+	/*cli.registerAction(CLIActionSimple("action", "Custom simple action description.", []() {
 		Console::print("Simple action test.\n\n");
 	}));
 
 	// Simple action with a parameter
-	cli.registerAction(CLIActionParam("-a", "/some/path", "This action is called when a parameter -a is passed with content. A parametric action must start with at least a dash \"-\".", []() {
-		Console::print("Simple parametric action test. Content passed: \n\n"); // TODO
+	cli.registerAction(CLIActionParam("-a", "/some/path", "This action is called when a parameter -a is passed with content, in this case /some/path is a default value if no content is passed. A parametric action must start with at least a dash \"-\".", []() {
+
+	    // Refer to the passed parameter with string "%param"
+	    Console::print("Simple parametric action test. Content passed: %param\n\n");
+
 	}));
 
 	//These actions are in OR
 	cli.registerAction(CLIActionList({"action1", "action2"}, "Action1 and action2 have the same effect.", []() {
 		Console::print("Simple action list test.\n\n");
-	}));
+	}));*/
 
-	
+
 	// TODO - interactive mode
 
 

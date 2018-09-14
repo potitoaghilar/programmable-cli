@@ -6,7 +6,7 @@
 
 using namespace std;
 
-CLIAction::CLIAction(vector<string> names, string description, std::function<void ()> function) {
+CLIAction::CLIAction(vector<string> names, string description, std::function<void (CLI* cli)> function) {
 	for(int i = 0; i < names.size(); i++) {
 		this->names.push_back(names[i]);
 	}
@@ -49,5 +49,5 @@ string CLIAction::getCalledAction() {
 
 void CLIAction::execute() {
 	// Execute lambda function for this action
-	function();
+	function(nullptr);
 }

@@ -17,7 +17,7 @@ using namespace std;
 
 CLI::CLI() {
 	// Help panel is a must have for every CLI
-	this->registerAction(CLIActionList({"-h", "--help"}, "Show this help panel."));
+	this->registerAction(CLIActionList({"-h", "--help"}, "Show this help panel.", [&](CLI* cli) { help(cli); }));
 	// Interactive mode allow you to insert commands after entering the CLI
 	this->registerAction(CLIActionSimple("-i", "Enter interactive mode."));
 }
@@ -102,17 +102,10 @@ CLIAction CLI::getCLIAction(string actionName) {
 	throw std::runtime_error("Action not found!");
 }
 
-// CLI actions methods
-
-void CLI::help() {
-	Console::printHelp(this->getActions());
+void CLI::help(CLI* cli) {
+	Console::printHelp(cli->getActions());
 }
 
-void CLI::customAction() {
-    // TODO - implement windows and unix differences
-	#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
-		ProcessManager::startProcess("<custom windows cmd script>");
-	#else
-		ProcessManager::startProcess("<custom unix bash script>");
-	#endif
+void CLI::help() {
+    help(this);
 }

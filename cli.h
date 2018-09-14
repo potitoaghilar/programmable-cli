@@ -13,13 +13,11 @@ class CLI {
 		std::vector<CLIAction> getActions();
 		int getActionsCount();
 		int execute(std::vector<std::string>);
-		void help();
-
-		// CLI actions - write here your custom actions methods
-		void customAction();
+        void help();
 
 	private:
 		std::vector<CLIAction> actions;
+        void help(CLI* cli);
 
 };
 
