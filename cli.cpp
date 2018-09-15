@@ -87,15 +87,15 @@ int CLI::execute(std::vector<std::string> commands) {
 
 }
 
-CLIAction CLI::getCLIAction(int i) {
-	return this->actions[i];
+CLIAction* CLI::getCLIAction(int i) {
+	return &this->actions[i];
 }
 
-CLIAction CLI::getCLIAction(string actionName) {
+CLIAction* CLI::getCLIAction(string actionName) {
 	for(int i = 0; i < this->getActionsCount(); i++) {
 		for(int o = 0; o < this->actions[i].getNames().size(); o++) {
 			if(this->actions[i].getName(o) == actionName) {
-				return this->actions[i];
+				return &this->actions[i];
 			}
 		}
 	}

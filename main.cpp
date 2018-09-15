@@ -7,6 +7,7 @@
 #include "cli.h"
 #include "console.h"
 #include "utils.h"
+#include "environment.h"
 
 using namespace std;
 
@@ -15,17 +16,11 @@ int main(int argc, char* argv[]) {
 	// Application name
 	const string appName = "myApp";
 
+	// Header to show
+	Console::printHeader(appName);
+
 	// Convert argv to a vector of strings
 	vector<string> args = Utils::argvToArgs(argc, argv);
-
-	// Header to show
-	Console::print(appName + " - Command Line Interface (CLI)\n\n");
-
-	/*#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
-
-	#else
-
-	#endif*/
 
 	// Main CLI object
 	CLI cli;
@@ -36,8 +31,15 @@ int main(int argc, char* argv[]) {
 	// Chaining actions is also possible.
 
 	// Simple action
-	/*cli.registerAction(CLIActionSimple("action", "Custom simple action description.", []() {
-		Console::print("Simple action test.\n\n");
+	cli.registerAction(CLIActionSimple("action", "Custom simple action description.", []() {
+
+		// Check change the code for each environment (Windows or Unix)
+		if(Environment::isWin()) {
+			Console::print("Simple action test in Windows environment.\n\n");
+		} else if(Environment::isUnix()) {
+			Console::print("Simple action test in Unix environment.\n\n");
+		}
+
 	}));
 
 	// Simple action with a parameter
@@ -51,7 +53,7 @@ int main(int argc, char* argv[]) {
 	//These actions are in OR
 	cli.registerAction(CLIActionList({"action1", "action2"}, "Action1 and action2 have the same effect.", []() {
 		Console::print("Simple action list test.\n\n");
-	}));*/
+	}));
 
 
 	// TODO - interactive mode

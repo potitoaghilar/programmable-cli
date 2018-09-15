@@ -8,8 +8,8 @@ class CLI {
 		void registerAction(CLIAction);
 		bool actionExists(CLIAction);
 		bool actionExists(std::string);
-        CLIAction getCLIAction(int);
-        CLIAction getCLIAction(std::string);
+        CLIAction* getCLIAction(int);
+        CLIAction* getCLIAction(std::string);
 		std::vector<CLIAction> getActions();
 		int getActionsCount();
 		int execute(std::vector<std::string>);

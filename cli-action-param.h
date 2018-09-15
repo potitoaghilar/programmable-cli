@@ -7,7 +7,8 @@ class CLIActionParam : public CLIAction {
 	public:
 		CLIActionParam(std::string, std::string, std::string = "", std::function<void ()> = []() {});
 		~CLIActionParam();
-		std::string getDefaultContent();
+		void setContent(std::string);
+		std::string getContent();
 	private:
 		std::string content;
 };

@@ -7,7 +7,7 @@
 using namespace std;
 
 CLIActionParam::CLIActionParam(string param, string defaultContent, string description, std::function<void ()> function) : CLIAction({param}, description, function) {
-	this->content = content;
+	this->content = defaultContent;
 
 	// Auto add dash as first char
 	if(param[0] != '-') {
@@ -19,6 +19,10 @@ CLIActionParam::CLIActionParam(string param, string defaultContent, string descr
 
 CLIActionParam::~CLIActionParam() {}
 
-string CLIActionParam::getDefaultContent()  {
+void CLIActionParam::setContent(std::string content) {
+	this->content = content;
+}
+
+string CLIActionParam::getContent()  {
 	return content;
 }

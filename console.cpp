@@ -29,6 +29,10 @@ void Console::printHelp(vector<CLIAction> actions) {
 	Console::print("\n");
 }
 
+void Console::printHeader(std::string title, std::string info) {
+	print(title + " - " + info + "\n\n");
+}
+
 int Console::getMaxLengthFromActionsNames(vector<CLIAction> actions) {
 	vector<int> sizes;
 	for(int i = 0; i < actions.size(); i++) {
