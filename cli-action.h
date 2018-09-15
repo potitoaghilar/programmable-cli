@@ -20,12 +20,12 @@ class CLIAction {
         bool isNoAction;
 
     protected:
-        CLIAction(std::vector<std::string>, std::string, std::function<void (CLI* cli)>);
+        CLIAction(std::vector<std::string>, std::string, std::function<void ()>);
         CLIAction(); // This constructor is for CLINoAction type
 		std::vector<std::string> names;
 		std::string description;
 		std::string calledAction;
-        std::function<void (CLI*)> function;
+        std::function<void ()> function;
 
 };
 

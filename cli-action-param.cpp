@@ -6,7 +6,7 @@
 
 using namespace std;
 
-CLIActionParam::CLIActionParam(string param, string defaultContent, string description, std::function<void (CLI*)> function) : CLIAction({param}, description, function) {
+CLIActionParam::CLIActionParam(string param, string defaultContent, string description, std::function<void ()> function) : CLIAction({param}, description, function) {
 	this->content = content;
 
 	// Auto add dash as first char

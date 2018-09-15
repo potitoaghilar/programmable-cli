@@ -17,7 +17,7 @@ using namespace std;
 
 CLI::CLI() {
 	// Help panel is a must have for every CLI
-	this->registerAction(CLIActionList({"-h", "--help"}, "Show this help panel.", [&](CLI* cli) { help(cli); }));
+	this->registerAction(CLIActionList({"-h", "--help"}, "Show this help panel.", [this]() { help(this); }));
 	// Interactive mode allow you to insert commands after entering the CLI
 	this->registerAction(CLIActionSimple("-i", "Enter interactive mode."));
 }
