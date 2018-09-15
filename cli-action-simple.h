@@ -5,7 +5,7 @@
 
 class CLIActionSimple : public CLIAction {
 	public:
-		CLIActionSimple(std::string, std::string = "");
+		CLIActionSimple(std::string, std::string = "", std::function<void ()> = []() {});
 		~CLIActionSimple();
 };
 

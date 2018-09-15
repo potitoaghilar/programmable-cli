@@ -8,18 +8,16 @@ class CLI {
 		void registerAction(CLIAction);
 		bool actionExists(CLIAction);
 		bool actionExists(std::string);
+        CLIAction getCLIAction(int);
+        CLIAction getCLIAction(std::string);
 		std::vector<CLIAction> getActions();
 		int getActionsCount();
-		int execute(char *command[]);
-		void help();
-
-		// CLI actions - write here your custom actions methods
-		void customAction();
+		int execute(std::vector<std::string>);
+        void help();
 
 	private:
 		std::vector<CLIAction> actions;
-		CLIAction getCLIAction(int);
-		CLIAction getCLIAction(std::string);
+        void help(CLI* cli);
 
 };
 
