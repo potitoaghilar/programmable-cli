@@ -4,6 +4,6 @@
 
 using namespace std;
 
-CLIActionList::CLIActionList(vector<string> names, string description) : CLIAction(names, description) {};
+CLIActionList::CLIActionList(vector<string> names, string description, std::function<void ()> function) : CLIAction(names, description, function) {};
 
 CLIActionList::~CLIActionList() {}
